@@ -1,11 +1,14 @@
-import React from 'react'
+import React from "react";
 
-const Smurf = () => {
-    return (
-        <div>
-            {/* TODO: Create smurf card here */}
-        </div>
-    )
-}
+const Smurf = (props) => {
+  const { name, age, height } = props.smurf;
+  return (
+    <div>
+      <h2>{name}</h2>
+      <p>{age}</p>
+      <p>{height}</p>
+    </div>
+  );
+};
 
-export default Smurf
+export default Smurf;

@@ -1,11 +1,26 @@
-import React from 'react'
+import React, { useEffect } from "react";
+import Smurf from "./Smurf";
+import { connect } from "react-redux";
+import { fetchSmurfs } from "../actions";
 
-const Smurfs = () => {
-    return (
-        <div>
-            <h2>List of smurfs goes here</h2>
-        </div>
-    )
-}
+const Smurfs = (props) => {
+  useEffect(() => {
+    props.fetchSmurfs();
+  }, []);
 
-export default Smurfs
+  return (
+    <div>
+      {props.smurfs.map((smurf) => {
+        return <Smurf key={smurf.id} smurf={smurf} />;
+      })}
+    </div>
+  );
+};
+
+const mapStateToProps = (state) => {
+  return {
+    smurfs: state.smurfs,
+  };
+};
+
+export default connect(mapStateToProps, { fetchSmurfs })(Smurfs);
